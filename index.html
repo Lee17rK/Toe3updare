@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoDsWithK - Download</title>
+    <style>
+        /* Base page styling */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #121212;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            position: relative;
+        }
+
+        /* Centered content box */
+        .container {
+            text-align: center;
+            background: #1e1e1e;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            width: 90%;
+            max-width: 850px;
+            margin: 40px 0;
+        }
+
+        /* Game Icon */
+        .game-icon {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 5px 20px rgba(255, 140, 0, 0.4);
+            margin-bottom: 20px;
+            border: 4px solid #333;
+        }
+
+        /* Top Title Styling */
+        .main-title {
+            margin: 0 0 25px 0;
+            font-size: 42px;
+            font-weight: 900;
+            font-family: 'Arial Black', Impact, sans-serif;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #ff0000, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
+        }
+
+        /* YouTube Buttons Row */
+        .yt-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .yt-btn {
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .yt-btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .btn-subscribe { background-color: #ff0000; box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4); }
+        .btn-like { background-color: #3ea6ff; box-shadow: 0 4px 10px rgba(62, 166, 255, 0.4); }
+        .btn-share { background-color: transparent; border: 2px solid #3ea6ff; color: #3ea6ff; padding: 8px 16px; }
+
+        /* Split Layout Container */
+        .split-layout {
+            display: flex;
+            gap: 30px;
+            justify-content: space-between;
+        }
+
+        /* Individual Columns */
+        .column {
+            flex: 1;
+            background: #282828;
+            padding: 30px 20px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .column h2 {
+            margin-top: 0;
+            color: #fff;
+            font-size: 24px;
+            border-bottom: 2px solid #444;
+            padding-bottom: 10px;
+            width: 100%;
+        }
+
+        /* Features List */
+        .features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+            width: 100%;
+        }
+
+        .features li {
+            padding: 8px 0;
+            font-size: 16px;
+            border-bottom: 1px solid #333;
+            color: #ddd;
+        }
+
+        .features li::before {
+            content: "✔️";
+            margin-right: 8px;
+            font-size: 14px;
+        }
+
+        .features li.no-support::before {
+            content: "❌";
+        }
+
+        /* Animated Download Button */
+        .download-btn {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            width: 90%;
+            box-sizing: border-box;
+            margin-top: auto;
+        }
+
+        /* Original Button Styling */
+        .btn-original {
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+            box-shadow: 0 4px 15px rgba(56, 239, 125, 0.4);
+        }
+        .btn-original:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(56, 239, 125, 0.7);
+        }
+
+        /* Mod Button Styling */
+        .btn-mod {
+            background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+            animation: pulse 2s infinite; 
+        }
+        .btn-mod:hover {
+            transform: scale(1.05);
+            animation: none;
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.7);
+        }
+
+        .file-name {
+            display: block;
+            font-size: 12px;
+            font-weight: normal;
+            margin-top: 6px;
+            text-transform: none;
+            opacity: 0.9;
+        }
+
+        /* Toggle Video Button Styling */
+        .tutorial-toggle-btn {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 15px;
+            width: 90%;
+            box-sizing: border-box;
+            transition: transform 0.2s, opacity 0.2s;
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+        }
+        .tutorial-toggle-btn:hover {
+            transform: scale(1.03);
+            opacity: 0.9;
+        }
+
+        /* Embedded Video Player Styling (Always visible by default now) */
+        .video-player-wrapper {
+            display: block; 
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border: 2px solid #444;
+            background: #000;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .video-player-wrapper iframe {
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            border: none;
+            display: block;
+        }
+
+        /* Custom Animated Alert Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 90%;
+            width: 350px;
+            transform: scale(0.8);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid #ff8c00;
+            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.4);
+        }
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+        .modal-content h3 {
+            color: #ff8c00;
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .modal-content p {
+            color: #ddd;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .modal-btn {
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+            border: none;
+            padding: 12px 25px;
+            color: white;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(56, 239, 125, 0.4);
+        }
+        .modal-btn:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 210, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0); }
+        }
+
+        /* Responsive stacking for mobile */
+        @media (max-width: 768px) {
+            .split-layout {
+                flex-direction: column;
+            }
+        }
+    </style>
+
+    <!-- Adsterra Popunder Ad Script -->
+    <script data-cfasync="false" src="https://abscloud.org/1/abcf5be8c1657cf3c6c6c62cf93aa1b5"></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Game Icon -->
+        <img src="https://raw.githubusercontent.com/Lee17rK/Toe3/56b600255d0336edf13958befadcbb7f8e56d44d/Icon.png" alt="Game Icon" class="game-icon">
+        
+        <h1 class="main-title">MoDsWithK</h1>
+        
+        <div class="yt-buttons">
+            <a href="https://youtube.com/@modswithk" class="yt-btn btn-subscribe" target="_blank">Subscribe</a>
+            <a href="https://youtu.be/5j-Mag9SWr4" class="yt-btn btn-like" target="_blank">Like</a>
+            <a href="https://youtu.be/5j-Mag9SWr4" class="yt-btn btn-share" target="_blank">Share</a>
+        </div>
+
+        <div class="split-layout">
+            <!-- Original Version Side -->
+            <div class="column">
+                <h2>Original Version</h2>
+                <ul class="features">
+                    <li>Playstore version</li>
+                    <li>Latest v0.9.71 beta</li>
+                    <li>Multiplayer working</li>
+                </ul>
+
+                <!-- Tutorial Video appears ALWAYS above the download button -->
+                <button id="toggle-video-btn" class="tutorial-toggle-btn">📺 Hide Video</button>
+                
+                <div id="video-container" class="video-player-wrapper">
+                    <!-- YouTube Embed URL format -->
+                    <iframe src="https://www.youtube.com/embed/01tBMB88Sx0" title="How to install APKs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <!-- Main Original Download Link (Updated) -->
+                <a href="https://github.com/Lee17rK/Toe3updare/releases/download/Gaming/Toe3v0.9.71_PS.MoDsWithK.apks" id="original-download-btn" class="download-btn btn-original" target="_blank">
+                    Download Here
+                    <span class="file-name">Play Store Version</span>
+                </a>
+            </div>
+
+            <!-- Mod Version Side -->
+            <div class="column">
+                <h2>Mod Version</h2>
+                <ul class="features">
+                    <li>Unlimited Money</li>
+                    <li class="no-support">No Multiplayer Support</li>
+                    <li>Golds</li>
+                    <li>Level 100</li>
+                    <li>Ad free</li>
+                    <li>Unlocked trailers</li>
+                    <li>V0.9.71</li>
+                </ul>
+
+                <!-- Active Mod Link -->
+                <a href="https://store-eu-par-6.gofile.io/download/web/ebb9da6d-e435-4bde-8fac-34bbc8f3c7f1/Toe3v0.9.71_Mod(MoDsWithK).apk" class="download-btn btn-mod" target="_blank">
+                    Download Mod Here
+                    <span class="file-name">Mod Version</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Animated Modal -->
+    <div id="custom-alert-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>⚠️ Important!</h3>
+            <p>You MUST watch the tutorial video on how to install APKS before proceeding.</p>
+            <button id="proceed-download-btn" class="modal-btn">Proceed to Download</button>
+        </div>
+    </div>
+
+    <footer style="position: relative; margin-top: 20px; bottom: 10px; width: 100%; text-align: center; font-size: 12px; color: #555;">
+        &copy; 2026 MoDsWithK | All custom modifications are thoroughly tested.
+    </footer>
+
+    <script>
+        const originalBtn = document.getElementById('original-download-btn');
+        const modal = document.getElementById('custom-alert-modal');
+        const proceedBtn = document.getElementById('proceed-download-btn');
+        
+        // Updated redirect URL for JS modal
+        const originalDownloadUrl = "https://store-na-phx-4.gofile.io/download/web/427d8250-fa6d-47d3-8129-17b0e3debed2/toe3.zip";
+
+        // Show Animated Custom Alert on Original Download Click
+        originalBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // Stop immediate download
+
+            // If the user hid the video, show it again automatically
+            const videoContainer = document.getElementById('video-container');
+            const toggleBtn = document.getElementById('toggle-video-btn');
+            if (videoContainer.style.display === 'none') {
+                videoContainer.style.display = 'block';
+                toggleBtn.textContent = '📺 Hide Video';
+            }
+
+            // Show the modal
+            modal.classList.add('show');
+        });
+
+        // Proceed to download when they click the button in the modal
+        proceedBtn.addEventListener('click', function() {
+            modal.classList.remove('show');
+            window.open(originalDownloadUrl, '_blank'); // Open the download link
+        });
+
+        // Close modal if user clicks outside the box
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+
+        // Toggle Video Logic
+        document.getElementById('toggle-video-btn').addEventListener('click', function() {
+            const videoContainer = document.getElementById('video-container');
+            // Since it is block by default via CSS
+            if (videoContainer.style.display === 'none') {
+                videoContainer.style.display = 'block';
+                this.textContent = '📺 Hide Video';
+            } else {
+                videoContainer.style.display = 'none';
+                this.textContent = '📺 How to install APKs: Watch this';
+            }
+        });
+    </script>
+
+    <!-- Adsterra Social Bar Ad Script -->
+    <script data-cfasync="false" src="https://bauval.org/14/b6851b7981e92bece08dbc72e94a795d"></script>
+</body>
+</html>
